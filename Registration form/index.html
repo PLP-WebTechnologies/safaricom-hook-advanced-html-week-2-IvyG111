@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: white;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #00ffcc;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin: 10px 0 5px;
+            color: #00ffcc;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #00ffcc;
+            border-radius: 5px;
+            background: #2a2a2a;
+            color: white;
+            font-size: 16px;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .gender-group {
+            display: flex;
+            justify-content: space-between;
+            color: #00ffcc;
+        }
+
+        .terms {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #00ffcc;
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #009999;
+            transform: scale(1.05);
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+        }
+
+        .success-message {
+            color: #00ffcc;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* For Form Validation Effects */
+        input:focus {
+            border-color: #00ffcc;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <form id="registrationForm">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" required maxlength="50" placeholder="Enter your full name">
+            
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required minlength="8" placeholder="Enter your password">
+
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" required min="18" placeholder="Enter your age">
+
+            <label>Gender</label>
+            <div class="gender-group">
+                <label><input type="radio" name="gender" value="male" required> Male</label>
+                <label><input type="radio" name="gender" value="female" required> Female</label>
+                <label><input type="radio" name="gender" value="other" required> Other</label>
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the terms and conditions</label>
+            </div>
+
+            <button type="submit">Register</button>
+            <div id="message"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent actual form submission
+
+            // Get form inputs
+            const fullname = document.getElementById("fullname").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const age = document.getElementById("age").value;
+            const gender = document.querySelector("input[name='gender']:checked")?.value;
+            const terms = document.getElementById("terms").checked;
+
+            // Validate form inputs
+            if (!fullname || !email || !password || !age || !gender || !terms) {
+                document.getElementById("message").innerHTML = `<p class="error-message">Please fill in all fields and accept the terms.</p>`;
+                return;
+            }
+
+            if (password.length < 8) {
+                document.getElementById("message").innerHTML = `<p class="error-message">Password must be at least 8 characters long.</p>`;
+                return;
+            }
+
+            // Show success message
+            document.getElementById("message").innerHTML = `<p class="success-message">Registration Successful! Welcome, ${fullname}.</p>`;
+
+            // Optionally reset the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivy's Media Webpage</title>
+    <style>
+       
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #00ffcc;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .media-card {
+            background: #2a2a2a;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .media-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        audio, video {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .audio-image, .video-poster {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #00ffcc;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00bfa5;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #00ffcc;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Ivy's Interactive Media Webpage</h1>
+    </header>
+
+    <div class="container">
+      
+        <div class="media-card">
+            <h2>Audio Player</h2>
+            <img src="images/Bien wahala.jpeg" alt="Audio Thumbnail" class="audio-image">
+            <audio id="audioPlayer" controls>
+                <source src="audio/Bien-Wahala (1).mp3" type="audio/mp3">
+                
+            </audio>
+            <br>
+            <button onclick="toggleAudio()">Play/Pause Audio</button>
+        </div>
+
+        
+        <div class="media-card">
+            <h2>Video Player</h2>
+            <video id="videoPlayer" controls poster="images/bien.webp">
+                <source src="video/WhatsApp Video 2024-11-28 at 3.21.09 PM.mp4" type="video/mp4">
+            </video>
+            <br>
+            <button onclick="toggleVideo()">Play/Pause Video</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Interactive Media. All rights reserved.</p>
+    </footer>
+
+    <script>
+        
+        function toggleAudio() {
+            const audio = document.getElementById('audioPlayer');
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+       
+        function toggleVideo() {
+            const video = document.getElementById('videoPlayer');
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+    </script>
+</body>
+</html>
